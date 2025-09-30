@@ -11,6 +11,7 @@ const db=require('./models/index');
 
  
 const prepareAndstartServer=()=>{
+  const {User,Role}=require('./models/index');
 
    app.use(bodyParser.json());
    app.use(bodyParser.urlencoded({extended:true}))
@@ -21,7 +22,14 @@ const prepareAndstartServer=()=>{
       if(process.env.DB_SYNC){
         db.sequelize.sync({alter:true})
       }
+        // const u1=await User.findByPk(2);
+        // console.log(u1);
+        // const r1=await Role.findByPk(2);
+        // console.log(r1);
+        // u1.addRole(r1);
 
+        // const response=await u1.getRoles();
+        // console.log(response);
 
         // const repo=new UserRepository();
         // const response= await repo.getById(1);
