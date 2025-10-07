@@ -17,11 +17,11 @@ try {
     })
 } catch (error) {
     console.log(error);
-    return res.status(500).json({
-        message:'something went wrong',
+    return res.status(error.statusCode || 500).json({
+        message:error.message || 'Something went wrong',
         data:{},
         success:false,
-        err:error
+        err:error.explanation || error
     });
 }
 }
@@ -37,11 +37,12 @@ const signIn=async (req,res)=> {
                      
         })
     } catch (error) {
-        return res.status(500).json({
-            message:'Something went wrong',
+        
+        return res.status(error.statusCode).json({
+            message:error.message,
             data:{},
             success:false,
-            err:error
+            err:error.explanation
         });
     }
 }
